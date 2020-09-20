@@ -1,0 +1,157 @@
+
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+<!----------------------------------- MAIN BODY -------------------------------------->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search for COVID-19 results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+</head>
+
+<body>
+
+<div class="container" id="uncertainty"><!--TITLE-->
+
+    <div align="center">
+        <br><h3>Example Query Results</h3><br>
+    </div>
+
+
+
+
+<!--Instructions-->
+    <div id="app">
+
+        <div class="row">
+		    <div class="col-xs-12 col-md-12 col-sm-12 col-xs-12">
+			    <div class="well">
+
+                   {% for each_bucket in data %}
+
+                       <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#block-{{forloop.counter}}">
+                          <span style="float: left"> <b>{{ each_bucket.aggre_name}}</b>: {{ each_bucket.name }} </span> <span style="float: right"><b>count</b>: {{ each_bucket.count }} </span>
+                       </button> <br/>
+                            <div id="block-{{forloop.counter}}" class="collapse">
+                                <div class="panel-body">
+                                <table class="table table-striped table-condensed" style="table-layout:fixed;">
+                                    <thead>
+                                    <tr class="row">
+                                        <th class="timestamp"> Timestamp </th>
+                                        <th class="text"> Representative Tweet </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for each_line in each_bucket.data %}
+                                    <tr class="row">
+                                        <td> {{ each_line.timestamp }} </td>
+                                        <td> {{ each_line.text }} [<a href="https://{{ each_line.tweet_link }}"  target="_blank">original tweet</a>]</td>
+                                    </tr>
+                                    {% endfor %}
+
+                                    {% for each_line in each_bucket.search_query %}
+                                    <tr class="row">
+                                        <td></td>
+                                        <td><a href="http://kb1.cse.ohio-state.edu:8000/covid19/show_complete_{{each_line.search_query}}" target="_blank">See all tweets</a> </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+         {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!----------------------------------- OTHER STUFF -------------------------------------->
+<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet" />
+
+<style class="darkreader darkreader--sync" media="screen" type="text/css">
+</style>
+
+<!-- Open internal style sheet -->
+<style type="text/css">
+    table {
+  width: 100%;
+}
+    th.timestamp{
+      width: 15%
+    }
+    th.text {
+      width: 85%; /* Not necessary, since only 70% width remains */
+    }
+
+
+    #collapseTrigger{
+	/*color:#fff;*/
+	display: block;
+	text-decoration: none;
+}
+#exampleColTrigger{
+	/*color:#fff;*/
+	display: block;
+	text-decoration: none;
+}
+#submitButton{
+	white-space: normal;
+}
+#instructionBody table{
+	font-size: 14px;
+	margin-top: 10px;
+}
+#instructionBody table caption{
+	text-align: left;
+	padding: 0 0 5px 0;
+}
+#exampleBody table{
+	font-size: 14px;
+	margin-top: 10px;
+}
+#exampleBody table caption{
+	text-align: left;
+	padding: 0 0 5px 0;
+}
+#Inputs{
+	display: block;
+	margin-top: 10px;
+}
+.content{
+	margin-bottom: 15px;
+}
+.radio:first-of-type{
+	margin-top: -5px;
+}
+.empty {
+	padding:10px 0
+}
+.alignLeft{
+	text-align: left;
+}
+.question{
+	background-color:#d7d7d7;
+	font-size:17px;
+	font-family:verdana,geneva,sans-serif;
+}
+.btn{
+    background: whitesmoke;
+    color: black;
+	width: 100%;
+}
+</style>
+<!-- Close internal style sheet -->
+<!-- External JS references -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"
+		integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+		crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous">
+</script>
