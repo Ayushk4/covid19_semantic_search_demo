@@ -1,0 +1,61 @@
+
+## Semantic Search for COVID-19 Using Twitter
+
+This repo contains the source code for our semantic search application. Our demo is built by using Django and Elasticsearch. 
+
+Check our demo at: http://kb1.cse.ohio-state.edu:8000/covid19/
+
+### System overview
+
+Our system works as follows: (1) A user types in a search query on the webpage. (2) Webpage makes a request to the Elasticsearch server and gets the results back from search engine. (3) Results are rendered in the webpage.
+
+#### Start Elasticsearch service
+
+Please download Elasticsearch package on your server (we use version 6.8.1). Then start Elasticsearch service by running the following command under elasticsearch directory.
+
+```
+./bin/elasticsearch
+```
+
+The default address for Elasticsearch is `127.0.0.1:9200`. You could check if you have successfully started the service by visiting the above address and having the `You Know, for Search` message.
+
+#### Import data into Elasticsearch
+
+In this demo, we directly import data into Elasticsearch, rather than first store the data in a database and sync with Elasticsearch. We provide our code for loading data in `load_data.py`. 
+
+In general, it contains the following steps.
+
+1. Declare the client: Once the client is declared, we are able to send requests to it.
+
+```
+es_client = Elasticsearch(hosts="http://127.0.0.1:9200/")
+``` 
+
+2. Build index: Specify which attributes you want to index (thus searchable) by Elasticsearch in `mappings`.
+
+```
+mappings = YOUR_DEFINED_MAPPING
+es_client.indices.create(index=YOUR_INDEX_NAME, body=mappings)
+```
+
+3. Import data: We use `helpers.bulk` to improve the speed of loading a large amount of data.
+
+```
+helpers.bulk(es_client, action)
+```
+ 
+#### Run web demo
+
+You could build our demo by running the following command:
+
+```js
+python manage.py runserver 0.0.0.0:YOUR_PORT
+```
+
+### Dependencies
+
+```
+elasticsearch == 6.8.1
+django == 2.2
+elasticsearch_dsl
+```

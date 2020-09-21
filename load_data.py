@@ -9,6 +9,7 @@ import numpy as np
 es_client = Elasticsearch(hosts="http://127.0.0.1:9200/")
 RANDOM_SEED = 901
 
+
 def readJSONLine(path):
 
     output = []
