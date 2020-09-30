@@ -5,7 +5,7 @@
       <paths name="kb1.cse.ohio-state.edu">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/zong/covid19_web_demo" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/home/zong/twitter/covid19_web_demo" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

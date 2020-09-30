@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="panel panel-info"><!--example heading-->
-                    <div class="panel-heading"><strong>Entering Your Searching Query...</strong></div>
+                    <div class="panel-heading"><strong>Enter Your Searching Query...</strong></div>
                     <div class="panel-body">
                         <form @submit.prevent="submitform">
                             <p> <h5><u>Free text filter:</u></h5> </p>
@@ -68,7 +68,7 @@
                                  End at <input type="date" v-model="date.end" min="2020-01-15" max="2020-08-26">
                              </p>
                             <p> <h5><u> Other setup:</u></h5>
-                            How many results you would like to return? <select v-model="top_K">
+                            How many results would you like to return? <select v-model="top_K">
                                 <option>10</option>
                                 <option>50</option>
                                 <option>100</option>
@@ -107,7 +107,7 @@
                                     <tbody>
                                     <tr v-for="(each_line, idx) in talk.data" class="row">
                                         <td> [[ each_line.timestamp ]] </td>
-                                        <td> [[ each_line.text ]] [<a :href="'https://'+[[each_line.tweet_link]]"  target="_blank">original tweet</a>] </td>
+                                        <td> [[ each_line.text ]] </td>
                                     </tr>
                                     <tr v-for="(each_line, idx) in talk.search_query" class="row">
                                         <td></td>
@@ -132,7 +132,7 @@
                             <tbody>
                             <tr v-for="(each_line, idx) in talk.data" class="row">
                                 <td> [[ each_line.timestamp ]] </td>
-                                <td> [[ each_line.text ]] [<a :href="'https://'+[[each_line.tweet_link]]"  target="_blank">original tweet</a>]</td>
+                                <td> [[ each_line.text ]] </td>
                             </tr>
                             </tbody>
                         </table>

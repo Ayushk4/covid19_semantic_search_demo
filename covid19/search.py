@@ -67,6 +67,11 @@ def gen_query(query_slot_mapping, category_flag):
     if category_flag in ['positive', 'negative']:
         input_must_not_condition.append("Q('match', name='author of the tweet')")
 
+    ##### deal with close contact - people can't be in close contact with themselves
+    if 'close_contact' in query_slot_mapping:
+        if query_slot_mapping['close_contact'] != '' and query_slot_mapping['close_contact'] != '*' and query_slot_mapping['name'] != '':
+            input_must_not_condition.append("Q('match', name='"+query_slot_mapping['close_contact']+"')")
+
     print(input_must_not_condition)
 
     ## add time range constraint

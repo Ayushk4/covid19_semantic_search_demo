@@ -48,7 +48,7 @@ helpers.bulk(es_client, action)
 
 You could build our demo by running the following command:
 
-```js
+```py
 python manage.py runserver 0.0.0.0:YOUR_PORT
 ```
 
