@@ -48,14 +48,14 @@ helpers.bulk(es_client, action)
 
 Suppose you have a new collection of tweets, please follow the instructions at https://github.com/viczong/extract_COVID19_events_from_Twitter for processing them and extracting text spans for slot filling questions.
 
-Please note that for reducing the file size, the BERT processed files `BERT_PROCESSED_FILE.jsonl` do not contain fields such as tweet timestamp. Thus we need to use the original file `ORGINAL_TWEETS_FILE.jsonl` for getting these information. We provide sample data files under `sample_data_file` folder for your reference.
+Please note that for reducing the file size, the BERT processed files `BERT_PROCESSED.jsonl` do not contain fields such as tweet timestamp. Thus we need to use the original file `ORGINAL_TWEET.jsonl` for getting these information. We provide sample data files under `sample_data_file` folder for your reference.
 
 Once you have already prepared these two files, run the following command for indexing tweets into Elasticsearch.
 
 ```
 python load_data.py --index_name covid19_positive
-                    --file_name BERT_PROCESSED_FILE.jsonl 
-                    --user_info_file ORGINAL_TWEETS_FILE.jsonl
+                    --file_name BERT_PROCESSED.jsonl 
+                    --user_info_file ORGINAL_TWEET.jsonl
 ```
 
  

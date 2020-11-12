@@ -153,8 +153,8 @@ def get_search_query(phrase):
         ## add cached mechanism
         print(phrase_for_mc)
 
-        # if not mc_client.get(phrase_for_mc):
-        if True:
+        if not mc_client.get(phrase_for_mc):
+        # if True:
             print('[I] query')
             if category_flag == 'positive':
                 results = requests.get(url="http://127.0.0.1:9200/covid19_positive/_search", json=curr_query).json()
