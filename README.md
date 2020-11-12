@@ -44,7 +44,7 @@ es_client.indices.create(index=YOUR_INDEX_NAME, body=mappings)
 helpers.bulk(es_client, action)
 ```
 
-#### Prepare date
+#### Prepare data
 
 Suppose you have a new collection of tweets, please follow the instructions at https://github.com/viczong/extract_COVID19_events_from_Twitter for processing them and extracting text spans for slot filling questions.
 
