@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 from .search import *
 
+from datetime import date
 
 def get_queryset(request):
     q = request.GET.get('q')
@@ -49,21 +50,23 @@ def positive_query_send_request(request):
 ### examples
 def demo_query_agg(request, demo_id):
 
+    curr_date = str(date.today())
+
     demo_res = None
     if demo_id == 'positive_1':
-        demo_res = search_direct("positive;*;;;;;;;;2020-01-15;2020-08-26;100")
+        demo_res = search_direct("positive;?;;;;;;2020-01-15;"+curr_date+";100")
     if demo_id == 'positive_2':
-        demo_res = search_direct("positive;;;*;;;;;;2020-01-15;2020-08-26;100")
+        demo_res = search_direct("positive;;?;;;;;2020-01-15;"+curr_date+";100")
     if demo_id == 'positive_3':
-        demo_res = search_direct("positive;*;;;Boris Johnson;;;;;2020-01-15;2020-08-26;100")
+        demo_res = search_direct("positive;?;;Boris Johnson;;;;2020-01-15;"+curr_date+";100")
     if demo_id == 'negative_1':
-        demo_res = search_direct("negative;*;;;;;;;2020-01-15;2020-08-26;100")
+        demo_res = search_direct("negative;?;;;;;2020-01-15;"+curr_date+";100")
     if demo_id == 'can_not_test_1':
-        demo_res = search_direct("can_not_test;*;;;;Yes;2020-01-15;2020-08-26;100")
+        demo_res = search_direct("can_not_test;?;;Yes;2020-01-15;"+curr_date+";100")
     if demo_id == 'death_1':
-        demo_res = search_direct("death;*;;;;;2020-01-15;2020-08-26;100")
+        demo_res = search_direct("death;?;;;2020-01-15;"+curr_date+";100")
     if demo_id == 'cure_1':
-        demo_res = search_direct("cure;*;;Yes;2020-01-15;2020-08-26;100")
+        demo_res = search_direct("cure;?;;Yes;2020-01-15;"+curr_date+";100")
 
     return render(request, 'example_queries/demo_agg_view.html', context={'data': demo_res})
 
